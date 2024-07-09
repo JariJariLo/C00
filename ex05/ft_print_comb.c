@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_print_comb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crjarill <crjarill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 12:41:38 by crjarill          #+#    #+#             */
-/*   Updated: 2024/07/09 12:50:38 by crjarill         ###   ########.fr       */
+/*   Created: 2024/07/04 23:52:02 by crjarill          #+#    #+#             */
+/*   Updated: 2024/07/05 01:09:51 by crjarill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <limits.h>
 
-void	ft_putnbr(int nb)
+void	ft_print_comb(void)
 {
 	char	c;
+	char	d;
+	char	u;
 
-	if (nb < 10)
+	c = '0';
+	while (c <= '7')
 	{
-		nb = nb * -1;
-		write(1, "-", 1);
+		d = c + 1;
+		while (d <= '8')
+		{
+			u = d + 1;
+			while (u <= '9')
+			{
+				write(1, &c, 1);
+				write(1, &d, 1);
+				write(1, &u, 1);
+				if (c != '7')
+					write(1, ", ", 2);
+				u++;
+			}
+			d++;
+		}
+		c++;
 	}
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-	}
-	c = (nb % 10) + '0';
-	write(1, &c, 1);
-}
-
-int	main(void)
-{
-	int		num;
-
-	num = INT_MIN;
-	ft_putnbr(num);
-	write(1, "\n", 1);
-	return (0);
 }
